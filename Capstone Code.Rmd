@@ -26,7 +26,7 @@ When you click the **Knit** button a document will be generated that includes bo
 
 
 ```{r}
-data425 <- read_xlsx("C:/Users/zhang/OneDrive/Documents and class files/DIDA425/Capstone Project/public-citywide-attendance-results.xlsx", sheet="Poverty")
+data425 <- read_xlsx("L:\\My Drive\\Binghamton University\\Fall 2024\\DIDA 425\\DIDA Capstone Project\\public-citywide-attendance-results.xlsx", sheet="Poverty")
 ```
 
 
