@@ -1,7 +1,0 @@
-"0","ggplot(data.frame(category1, Mean, sd), aes(x = category1, y = Mean, fill = category1)) + "
-"0","  geom_bar(stat = ""identity"", position = ""dodge"") + # Use position = ""dodge"" for grouped bars if needed"
-"0","  geom_errorbar(aes(ymin = Mean - sd, ymax = Mean + sd), width = 0.2) + # Error bars"
-"0","  ylab(""Attendance Percentage"") + "
-"0","  xlab(""Category"") +"
-"0","  coord_cartesian(ylim = c(85, 95))+"
-"0","  theme_minimal()"

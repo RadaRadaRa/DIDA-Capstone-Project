@@ -1,2 +1,0 @@
-"0","data5 <- data3_racialdemographics_cleaned1 %>% mutate(across('% Asian', ~.-data4_racialdemographics_cleaned1$`% Asian`)) %>% mutate(across('% Black', ~.-data4_racialdemographics_cleaned1$`% Black`))  %>% mutate(across('% Hispanic', ~.-data4_racialdemographics_cleaned1$`% Hispanic`)) %>% mutate(across('% Other', ~.-data4_racialdemographics_cleaned1$`% Other`)) %>% mutate(across('% White', ~.-data4_racialdemographics_cleaned1$`% White`))"
-"0","data5"

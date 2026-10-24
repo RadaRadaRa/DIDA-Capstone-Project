@@ -1,9 +1,0 @@
-"0","demograph.lm<-lm(formula=data3_racialdemographics_cleaned1$`Economic Need Index`~ data3_racialdemographics_cleaned1$`% Asian`"
-"0","   +data3_racialdemographics_cleaned1$`% Black`"
-"0","   +data3_racialdemographics_cleaned1$`% Hispanic`"
-"0","   +data3_racialdemographics_cleaned1$`% White`"
-"0","   +data3_racialdemographics_cleaned1$`% Other`"
-"0","   ,data=data3_racialdemographics_cleaned1)"
-"2","Error in eval(mf, parent.frame()) : 
-  object 'data3_racialdemographics_cleaned1' not found
-"

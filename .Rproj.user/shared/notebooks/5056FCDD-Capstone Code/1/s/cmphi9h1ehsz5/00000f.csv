@@ -1,4 +1,0 @@
-"0","data_attendancerace <- read_xlsx(""public-citywide-attendance-results.xlsx"", sheet=""Ethnicity"")"
-"2","Error in read_xlsx(""public-citywide-attendance-results.xlsx"", sheet = ""Ethnicity"") : 
-  could not find function ""read_xlsx""
-"

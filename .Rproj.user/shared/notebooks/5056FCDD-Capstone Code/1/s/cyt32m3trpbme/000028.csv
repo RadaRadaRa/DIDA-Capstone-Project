@@ -1,3 +1,0 @@
-"0","data2 <- read_xlsx(""Change in how households with children received education due to the coronavirus pandemic.xlsx"") %>% filter(Location==""New York"")"
-"0","data2$Data[data2$Data==""S""] <- ""0"""
-"0","data2"

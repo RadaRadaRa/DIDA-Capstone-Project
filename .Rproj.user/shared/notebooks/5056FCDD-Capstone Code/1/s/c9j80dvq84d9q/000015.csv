@@ -1,4 +1,0 @@
-"0","data_attendancerace <- read_xlsx(""public-citywide-attendance-results.xlsx"", sheet=""Ethnicity"")"
-"0","data_race_allgrades <- data_attendancerace %>% filter(Grade==""All Grades"")"
-"0","data_race_allgrades$'% Attendance' <- as.numeric(data_race_allgrades$'% Attendance')"
-"0","data_race_allgrades"

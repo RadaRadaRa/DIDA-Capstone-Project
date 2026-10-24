@@ -1,2 +1,0 @@
-"0","data1 <- data425 %>% filter(Grade==""All Grades"")"
-"0","data1$'% Attendance' <- as.numeric(data1$'% Attendance')"
