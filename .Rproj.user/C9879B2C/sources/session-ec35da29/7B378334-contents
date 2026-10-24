@@ -1,0 +1,297 @@
+---
+title: "capstone"
+output: html_document
+date: "2024-10-04"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+install.packages("readxl")
+library(readxl)
+```
+```{r}
+file.info("C:/Users/zhang/OneDrive/Documents and class files/DIDA425/Capstone Project/public-citywide-attendance-results.xlsx")
+```
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+
+
+```{r}
+data425 <- read_xlsx("C:/Users/zhang/OneDrive/Documents and class files/DIDA425/Capstone Project/public-citywide-attendance-results.xlsx", sheet="Poverty")
+```
+
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tidyr) #installing tidyr so I can use the pivot_longer() function
+library(ggthemes) #installing ggthemes so that I can use the minimal theme for my line graph
+```
+
+```{r}
+data1 <- data425 %>% filter(Grade=="All Grades")
+data1$'% Attendance' <- as.numeric(data1$'% Attendance')
+```
+
+```{r}
+data1
+data1cleaned<-data1[c('Category','Year','% Attendance')]
+data1cleaned
+```
+
+```{r}
+ggplot(data1cleaned, aes(x = Year, y = data1$'% Attendance', fill = Category)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    #title = "Different Economic Groups' % Attendance from 2016-2021",
+    x = "Year", y = "% Attendance") +
+  scale_fill_manual(values = c("#ff8800", "#236290"))+
+  coord_cartesian(ylim = c(85, 95)) +
+  theme_classic()
+#(axis.line = element_line(color = "black", size = 0.5))
+```
+```{r}
+category1<-c("Poverty","Not Poverty")
+povertydata <- data1cleaned %>% filter(Category=="Poverty")
+pmean<- mean(povertydata$`% Attendance`)
+psd<- sd(povertydata$`% Attendance`)
+notpovertydata <- data1cleaned %>% filter(Category=="Not Poverty")
+npmean<- mean(notpovertydata$`% Attendance`)
+npsd<-sd(notpovertydata$`% Attendance`)
+Mean<-c(pmean,npmean)
+sd<-c(psd,npsd)
+```
+
+```{r}
+t.test(povertydata$`% Attendance`,notpovertydata$`% Attendance`)
+```
+
+```{r}
+ggplot(data.frame(category1, Mean, sd), aes(x = category1, y = Mean, fill = category1)) + 
+  geom_bar(stat = "identity", position = "dodge") + # Use position = "dodge" for grouped bars if needed
+  geom_errorbar(aes(ymin = Mean - sd, ymax = Mean + sd), width = 0.2) + # Error bars
+  ylab("Attendance Percentage") + 
+  xlab("Category") +
+  coord_cartesian(ylim = c(85, 95))+
+  theme_minimal()
+```
+
+```{r}
+model <- lm(`% Attendance` ~ Category, data = data1)
+summary(model)
+```
+```{r}
+data2 <- read_xlsx("Change in how households with children received education due to the coronavirus pandemic.xlsx") %>% filter(Location=="New York")
+data2$Data[data2$Data=="S"] <- "0"
+data2
+```
+
+```{r}
+ggplot(data2, aes(x = TimeFrame, y = Data, fill = COVIDImpactEduc)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Teaching styles throughout COVID", x = "Time", y = "%") +
+  coord_cartesian(ylim = c(0, 1)) + 
+  theme(axis.line = element_line(color = "black", size = 0.5))#+
+  #scale_y_continuous(breaks = seq(0, 1, by = 0.1))
+```
+
+```{r}
+data_attendancerace <- read_xlsx("public-citywide-attendance-results.xlsx", sheet="Ethnicity")
+data_race_allgrades <- data_attendancerace %>% filter(Grade=="All Grades")
+data_race_allgrades$'% Attendance' <- as.numeric(data_race_allgrades$'% Attendance')
+data_race_allgrades
+```
+
+```{r}
+ggplot(data_race_allgrades, aes(x = Year, y = data_race_allgrades$'% Attendance', fill = Category)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    ##title = "Different Ethnic Groups' % Attendance from 2016-2021",+
+       x = "Year", y = "% Attendance") +
+  coord_cartesian(ylim = c(80, 100)) +
+  scale_fill_manual(values = c("#ff8800", "#f44a53", "#5fb9b2","#b977a3","#3f7aab"))+
+  theme_classic()
+#(axis.line = element_line(color = "black", size = 0.5))
+```
+```{r}
+model <- lm(`% Attendance` ~ Category, data = data_race_allgrades)
+summary(model)
+```
+```{r}
+data3<-read_xlsx("demographic-snapshot-2019-20-to-2023-24-public.xlsx",sheet="District")
+data3_racialdemographics <- data3 %>% filter(Year=="2019-20") 
+data3_racialdemographics
+```
+```{r}
+data3_racialdemographics_cleaned <- data3_racialdemographics[c( 
+"Administrative District",
+'% Black',
+'% Hispanic',
+#'% Multi-Racial',
+#'% Native American',
+'% Asian',
+'% White'
+#'% Missing Race/Ethnicity Data',
+#"Economic Need Index"
+)] 
+
+data3_racialdemographics_cleaned1 <- data3_racialdemographics_cleaned %>% mutate(`% Other`=data3_racialdemographics$`% Multi-Racial`
+                                                                                 #+data3_racialdemographics$`% Native American`
+                                                                                 #+data3_racialdemographics$`% Missing Race/Ethnicity Data`
+                                                                                 ) %>% mutate(across(where(is.numeric),~.*100)) %>% mutate(across(where(is.numeric),~round(.,1)))%>% mutate(`Economic Need Index`=round(data3_racialdemographics$`Economic Need Index`,digits=3))%>% arrange(`Economic Need Index`)
+data3_racialdemographics_cleaned1
+```
+```{r}
+summary(data3_racialdemographics_cleaned1)
+```
+```{r}
+install.packages("car")
+library(car)
+```
+
+```{r}
+demograph.lm<-lm(formula=data3_racialdemographics_cleaned1$`Economic Need Index`~ data3_racialdemographics_cleaned1$`% Asian`
+   +data3_racialdemographics_cleaned1$`% Black`
+   +data3_racialdemographics_cleaned1$`% Hispanic`
+   +data3_racialdemographics_cleaned1$`% White`
+   +data3_racialdemographics_cleaned1$`% Other`
+   ,data=data3_racialdemographics_cleaned1)
+summary(demograph.lm)
+vif(demograph.lm)
+```
+
+```{r}
+long_data <- data3_racialdemographics_cleaned1 %>%
+  pivot_longer(
+    cols = starts_with("%"), 
+    names_to = "Race",
+    values_to = "Percentage"
+  )
+long_data
+
+long_data$Race <- factor(long_data$Race, levels = c("% Black", "% Hispanic","% Other", "% Asian", "% White"))
+
+# Plot with reordered Race
+
+ggplot(long_data, aes(x = factor(`Administrative District`,levels = c("26", "03", "02", "31", "15", "13", "28", "25", "29", "22","01","30","27","24","18","21","14","20","84","17","11","05","04","06","16","08","10","79","19","32","23","75","07","12","09")), y = Percentage, fill = Race)) +
+  geom_bar(stat = "identity") +
+  labs(
+    #title = "Demographic Composition by Administrative District",
+    x = "Administrative District",
+    y = "Percentage"
+  ) +
+  scale_fill_manual(values = c("#f44a53", "#5fb9b2","#b977a3","#ff8800","#3f7aab")) +
+#scale_fill_brewer(palette = "Set3") +  # Adds a nice color palette
+  theme(panel.background = element_rect(fill = "white"),
+        panel.grid.major = element_line(color = "gray90"),
+        panel.grid.minor = element_blank(),
+        plot.background = element_rect(fill = "white"),
+        axis.text.x = element_text(size=8, angle = 45, hjust = 1))
+```
+```{r}
+model <- lm(`% Black` ~ `Economic Need Index`, data = data3_racialdemographics_cleaned1)
+summary(model)
+```
+```{r}
+model <- lm(`% Hispanic` ~ `Economic Need Index`, data = data3_racialdemographics_cleaned1)
+summary(model)
+```
+```{r}
+model <- lm(`% Other` ~ `Economic Need Index`, data = data3_racialdemographics_cleaned1)
+summary(model)
+```
+```{r}
+model <- lm(`% White` ~ `Economic Need Index`, data = data3_racialdemographics_cleaned1)
+summary(model)
+```
+```{r}
+```
+
+
+```{r}
+model <- lm(`% Asian` ~ `Economic Need Index`, data = data3_racialdemographics_cleaned1)
+summary(model)
+```
+
+```{r}
+data4<-read_xlsx("demographic-snapshot-2019-20-to-2023-24-public.xlsx",sheet="Citywide")
+data4_racialdemographics <- data4 %>% filter(Year=="2019-20") 
+data4_racialdemographics
+```
+```{r}
+data4_racialdemographics_cleaned <- data4_racialdemographics[c( 
+'% Asian',
+'% Black',
+'% Hispanic',
+#'% Multi-Racial',
+#'% Native American',
+'% White'
+#,'% Missing Race/Ethnicity Data',
+#"Economic Need Index"
+)] 
+data4_racialdemographics_cleaned1 <- data4_racialdemographics_cleaned <- data4_racialdemographics_cleaned %>% mutate(`% Other`=data4_racialdemographics$`% Multi-Racial`+data4_racialdemographics$`% Native American`+data4_racialdemographics$`% Missing Race/Ethnicity Data`) %>% mutate(`Economic Need Index`=data4_racialdemographics$`Economic Need Index`) %>% arrange(`Economic Need Index`) %>% mutate_all(~.*100) %>% mutate(across(where(is.numeric),~round(.,1)))
+data4_racialdemographics_cleaned1
+```
+```{r}
+data4_racialdemographics_cleaned1$`% Asian`
+```
+
+```{r}
+data5 <- data3_racialdemographics_cleaned1 %>% mutate(across('% Asian', ~.-data4_racialdemographics_cleaned1$`% Asian`)) %>% mutate(across('% Black', ~.-data4_racialdemographics_cleaned1$`% Black`))  %>% mutate(across('% Hispanic', ~.-data4_racialdemographics_cleaned1$`% Hispanic`)) %>% mutate(across('% Other', ~.-data4_racialdemographics_cleaned1$`% Other`)) %>% mutate(across('% White', ~.-data4_racialdemographics_cleaned1$`% White`))
+data5
+```
+
+```{r}
+install.packages("gt")
+install.packages("webshot")
+install.packages("webshot2")
+library(gt)
+library(webshot)
+library(webshot2)
+
+```
+```{r}
+data3_table<-data3_racialdemographics_cleaned1 %>%
+  gt() %>%
+  tab_header(
+    title ="NYC School Districts' Racial Groups Percentages"
+    #subtitle = "Subset of mtcars"
+  )
+gtsave(data3_table, "data3_table.png", path = "C:/Users/zhang/OneDrive/Documents and class files/DIDA425/Capstone Project", vheight=1450, cliprect = "viewport")
+```
+
+
+```{r}
+data4_table <- data4_racialdemographics_cleaned1 %>%
+  gt() %>%
+  tab_header(
+    title ="NYC's Overall Percentage"
+    #"Deviation from citywide demographic averages",
+    #subtitle = "Subset of mtcars"
+  )
+gtsave(data4_table, "data4_table.png", path = "C:/Users/zhang/OneDrive/Documents and class files/DIDA425/Capstone Project")
+```
+
+```{r}
+data5_table<-data5 %>%
+  gt() %>%
+  tab_header(
+    title ="NYC School Districts' Deviation from Overall City Average"
+    #"Deviation from citywide demographic averages",
+    #subtitle = "Subset of mtcars"
+  )
+gtsave(data5_table, "data5_table.png", path = "C:/Users/zhang/OneDrive/Documents and class files/DIDA425/Capstone Project", vheight=1450, cliprect = "viewport")
+
+```
+
+
+

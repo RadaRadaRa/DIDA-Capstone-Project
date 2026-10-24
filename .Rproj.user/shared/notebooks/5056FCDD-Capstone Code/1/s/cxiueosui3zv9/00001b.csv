@@ -1,0 +1,7 @@
+"0","data5 %>%"
+"0","  gt() %>%"
+"0","  tab_header("
+"0","    title =""Academic Districts' Deviation from Overall City Averages"""
+"0","    #""Deviation from citywide demographic averages"","
+"0","    #subtitle = ""Subset of mtcars"""
+"0","  )"

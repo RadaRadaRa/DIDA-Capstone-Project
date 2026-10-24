@@ -1,0 +1,8 @@
+"0","ggplot(data_race_allgrades, aes(x = Year, y = data_race_allgrades$'% Attendance', fill = Category)) +"
+"0","  geom_bar(stat = ""identity"", position = ""dodge"") +"
+"0","  labs("
+"0","    ##title = ""Different Ethnic Groups' % Attendance from 2016-2021"",+"
+"0","       x = ""Year"", y = ""% Attendance"") +"
+"0","  coord_cartesian(ylim = c(80, 100)) +"
+"0","  scale_fill_manual(values = c(""#ff8800"", ""#f44a53"", ""#5fb9b2"",""#b977a3"",""#3f7aab""))+"
+"0","  theme_classic()"

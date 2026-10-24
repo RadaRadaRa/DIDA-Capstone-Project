@@ -1,0 +1,2 @@
+"0","data1cleaned<-data1[c('Category','Year','% Attendance')]"
+"0","data1cleaned"

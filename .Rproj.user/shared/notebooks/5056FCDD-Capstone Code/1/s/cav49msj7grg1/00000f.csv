@@ -1,0 +1,10 @@
+"0","data5_table<-data5 %>%"
+"0","  gt() %>%"
+"0","  tab_header("
+"0","    title =""NYC School Districts' Deviation from Overall City Average"""
+"0","    #""Deviation from citywide demographic averages"","
+"0","    #subtitle = ""Subset of mtcars"""
+"0","  )"
+"0","gtsave(data5_table, ""data5_table.png"", path = ""C:/Users/zhang/OneDrive/Documents and class files/DIDA425/Capstone Project"", vheight=1450, cliprect = ""viewport"")"
+"2","file:///C:/Users/zhang/AppData/Local/Temp/RtmpMbl6NU/file7af049c6bdf.html screenshot completed
+"

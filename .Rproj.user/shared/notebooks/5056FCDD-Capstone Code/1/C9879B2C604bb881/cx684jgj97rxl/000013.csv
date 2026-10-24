@@ -1,0 +1,139 @@
+"0","install.packages(""gt"")"
+"1","Error in "
+"1",""
+"1","install.packages"
+"1",""
+"1"," : "
+"1",""
+"1","Updating loaded packages"
+"1",""
+"1","
+"
+"0","install.packages(""webshot"")"
+"2","Installing package into ‘C:/Users/zhang/AppData/Local/R/win-library/4.4’
+(as ‘lib’ is unspecified)
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/webshot_0.5.5.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 217498 bytes (212 KB)
+"
+"2","downloaded 212 KB
+
+"
+"1","package ‘webshot’ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\zhang\AppData\Local\Temp\Rtmpmitqeb\downloaded_packages"
+"1",""
+"1","
+"
+"0","install.packages(""webshot2"")"
+"2","Installing package into ‘C:/Users/zhang/AppData/Local/R/win-library/4.4’
+(as ‘lib’ is unspecified)
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/webshot2_0.1.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1781284 bytes (1.7 MB)
+"
+"2","downloaded 1.7 MB
+
+"
+"1","package ‘webshot2’ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\zhang\AppData\Local\Temp\Rtmpmitqeb\downloaded_packages"
+"1",""
+"1","
+"
+"0","install.packages(""gt"")"
+"2","Installing package into ‘C:/Users/zhang/AppData/Local/R/win-library/4.4’
+(as ‘lib’ is unspecified)
+"
+"2","also installing the dependency ‘glue’
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/glue_1.8.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 184036 bytes (179 KB)
+"
+"2","downloaded 179 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/gt_0.11.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 6104191 bytes (5.8 MB)
+"
+"2","downloaded 5.8 MB
+
+"
+"1","package ‘glue’ successfully unpacked and MD5 sums checked
+"
+"1","Warning in "
+"1",""
+"1","install.packages"
+"1",""
+"1"," :
+  "
+"1",""
+"1","cannot remove prior installation of package ‘glue’"
+"1",""
+"1","
+"
+"1","Warning in "
+"1",""
+"1","install.packages"
+"1",""
+"1"," :
+  "
+"1",""
+"1","problem copying C:\Users\zhang\AppData\Local\R\win-library\4.4\00LOCK\glue\libs\x64\glue.dll to C:\Users\zhang\AppData\Local\R\win-library\4.4\glue\libs\x64\glue.dll: Permission denied"
+"1",""
+"1","
+"
+"1","Warning in "
+"1",""
+"1","install.packages"
+"1",""
+"1"," :
+  "
+"1",""
+"1","restored ‘glue’"
+"1",""
+"1","
+"
+"1","package ‘gt’ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\zhang\AppData\Local\Temp\Rtmpmitqeb\downloaded_packages"
+"1",""
+"1","
+"
+"0","library(gt)"
+"0","library(webshot)"
+"0","library(webshot2)"
+"2","Registered S3 method overwritten by 'webshot2':
+  method        from   
+  print.webshot webshot
+"
+"2","
+Attaching package: ‘webshot2’
+
+"
+"2","The following objects are masked from ‘package:webshot’:
+
+    appshot, resize, rmdshot, shrink, webshot
+
+"

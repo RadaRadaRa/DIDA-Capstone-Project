@@ -1,0 +1,4 @@
+"0","library(dplyr)"
+"0","library(ggplot2)"
+"0","library(tidyr) #installing tidyr so I can use the pivot_longer() function"
+"0","library(ggthemes) #installing ggthemes so that I can use the minimal theme for my line graph"

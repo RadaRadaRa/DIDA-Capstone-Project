@@ -1,0 +1,9 @@
+"0","data3_table<-data3_racialdemographics_cleaned1 %>%"
+"0","  gt() %>%"
+"0","  tab_header("
+"0","    title =""NYC School Districts' Racial Groups Percentages"""
+"0","    #subtitle = ""Subset of mtcars"""
+"0","  )"
+"0","gtsave(data3_table, ""data3_table.png"", path = ""C:/Users/zhang/OneDrive/Documents and class files/DIDA425/Capstone Project"", vheight=1450, cliprect = ""viewport"")"
+"2","file:///C:/Users/zhang/AppData/Local/Temp/RtmpMbl6NU/file7af01c57d81.html screenshot completed
+"

@@ -1,0 +1,4 @@
+"0","data425 <- read_xlsx(""public-citywide-attendance-results.xlsx"", sheet=""Poverty"")"
+"2","Error in utils::unzip(zip_path, list = TRUE) : 
+  zip file 'C:\Users\zhang\OneDrive\Documents and class files\DIDA425\Capstone Project\public-citywide-attendance-results.xlsx' cannot be opened
+"
